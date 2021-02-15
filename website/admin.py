@@ -6,10 +6,11 @@ from .models import (
 
 
 # Register your models here.
-class CarrersAdmin(admin.ModelAdmin):
+class CareersAdmin(admin.ModelAdmin):
 	list_display = ('career', 'added_date')
+	list_filter = ('added_date', )
 
-admin.site.register(Carrers, CarrersAdmin)
+admin.site.register(Careers, CareersAdmin)
 
 
 class IntroductionAdmin(admin.ModelAdmin):
