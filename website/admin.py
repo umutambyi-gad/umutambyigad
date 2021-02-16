@@ -21,3 +21,15 @@ class IntroductionAdmin(admin.ModelAdmin):
 	list_display = ('username', 'added_date')
 
 admin.site.register(Introduction, IntroductionAdmin)
+
+
+class ProfileAdmin(admin.ModelAdmin):
+	list_display = ('names' , 'added_date')
+
+admin.site.register(Profile, ProfileAdmin)
+
+
+class SkillsAdmin(admin.ModelAdmin):
+	list_display = ('name', 'added_date')
+
+admin.site.register(Skills, SkillsAdmin)
