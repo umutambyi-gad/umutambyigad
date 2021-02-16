@@ -42,6 +42,7 @@ class Profile(models.Model):
 	email = models.CharField(max_length=250)
 	phone = models.CharField(max_length=250)
 	about =  models.TextField()
+	added_date = models.DateTimeField(auto_now_add=True)
 
 
 	# This method will avoid to allow more than one instance being saved
