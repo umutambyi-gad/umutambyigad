@@ -99,7 +99,7 @@ class ServiceSection(models.Model):
 		verbose_name_plural = 'Service section'
 
 
-class Sevices(models.Model):
+class Services(models.Model):
 	icon = models.CharField(max_length=200)
 	title = models.CharField(max_length=250)
 	description = models.CharField(max_length=500)
@@ -268,4 +268,4 @@ class SocialMedia(models.Model):
 
 
 	class Meta:
-		verbose_name_plural = 'Contact'
+		verbose_name_plural = 'Social media'

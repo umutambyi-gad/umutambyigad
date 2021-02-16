@@ -5,8 +5,9 @@ from .models import (
 	Profile,
 	Skills,
 	ServiceSection,
-	Sevices,
-	Stastics,
+	Services,
+	StatisticSection,
+	Statistics,
 	PortifolioSection,
 	Portifolio,
 	Categories,
@@ -53,16 +54,19 @@ class ServiceSectionAdmin(admin.ModelAdmin):
 admin.site.register(ServiceSection, ServiceSectionAdmin)
 
 
-class SevicesAdmin(admin.ModelAdmin):
+class ServicesAdmin(admin.ModelAdmin):
 	list_display = ('title', 'added_date')
 
-admin.site.register(Sevices, SevicesAdmin)
+admin.site.register(Services, ServicesAdmin)
 
 
-class StasticsAdmin(admin.ModelAdmin):
+admin.site.register(StatisticSection)
+
+
+class StatisticsAdmin(admin.ModelAdmin):
 	list_display = ('title', 'added_date')
 
-admin.site.register(Stastics, StasticsAdmin)
+admin.site.register(Statistics, StatisticsAdmin)
 
 
 class PortifolioSectionAdmin(admin.ModelAdmin):
