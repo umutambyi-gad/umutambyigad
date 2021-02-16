@@ -30,3 +30,37 @@ class Introduction(models.Model):
 	def __str__(self):
 		return self.username
 
+
+	class Meta:
+		verbose_name_plural = 'Introduction'
+
+
+class Profile(models.Model):
+	avatar = models.ImageField(upload_to='images')
+	names = models.CharField(max_length=250)
+	profile = models.CharField(max_length=250)
+	email = models.CharField(max_length=250)
+	phone = models.CharField(max_length=250)
+	about =  models.TextField()
+
+
+	def __str__(self):
+		return self.names
+
+
+	class Meta:
+		verbose_name_plural = 'Profile'
+
+
+class Skills(models.Model):
+	name = models.CharField(max_length=250)
+	rate = models.IntegerField(default=0)
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	def __str__(self):
+		return self.name
+
+
+	class Meta:
+		verbose_name_plural = 'Skills'
