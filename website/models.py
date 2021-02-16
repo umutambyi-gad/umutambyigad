@@ -141,6 +141,9 @@ class PortifolioSection(models.Model):
 	def __str__(self):
 		return self.heading
 
+	class Meta:
+		verbose_name_plural = 'Portifolio section'
+
 
 class Categories(models.Model):
 	category = models.CharField(max_length=250)
@@ -167,6 +170,4 @@ class Portifolio(models.Model):
 
 
 	class Meta:
-		verbose_name = 'Portifolio'
-		verbose_name_plural = 'Portifolios'
-
+		verbose_name_plural = 'Portifolio'
