@@ -6,7 +6,9 @@ body {
   color: #fff !important;
 }
 
-
+.back-to-top {
+  background: linear-gradient(to right, #030729 50%, #3b96e6 50%) !important;
+}
 
 #mainNav {
   background: linear-gradient(to right, #040c4e 50%, #004e92 50%);
