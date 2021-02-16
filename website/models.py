@@ -51,7 +51,7 @@ class Profile(models.Model):
 
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
-		if not self.pk and Introduction.objects.exists():
+		if not self.pk and Profile.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
@@ -86,7 +86,7 @@ class ServiceSection(models.Model):
 
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
-		if not self.pk and Introduction.objects.exists():
+		if not self.pk and ServiceSection.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
@@ -114,7 +114,27 @@ class Sevices(models.Model):
 		verbose_name_plural = 'Services'
 
 
-class Stastics(models.Model):
+class StatisticSection(models.Model):
+	background_image = models.ImageField(upload_to='images')
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	# This method will avoid to allow more than one instance being saved
+	def save(self, *args, **kwargs):
+		if not self.pk and StatisticSection.objects.exists():
+			return False
+		super().save(*args, **kwargs)
+
+
+	def __str__(self):
+		return 'Statistic section'
+
+
+	class Meta:
+		verbose_name_plural = 'Statistic section'
+
+
+class Statistics(models.Model):
 	icon = models.CharField(max_length=200)
 	title = models.CharField(max_length=250)
 	rank = models.IntegerField(default=0)
@@ -126,7 +146,7 @@ class Stastics(models.Model):
 
 
 	class Meta:
-		verbose_name_plural = 'Stastics'
+		verbose_name_plural = 'Statistics'
 
 
 class PortifolioSection(models.Model):
@@ -137,7 +157,7 @@ class PortifolioSection(models.Model):
 
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
-		if not self.pk and Introduction.objects.exists():
+		if not self.pk and PortifolioSection.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
@@ -184,7 +204,7 @@ class BlogSection(models.Model):
 
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
-		if not self.pk and Introduction.objects.exists():
+		if not self.pk and BlogSection.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
@@ -223,7 +243,7 @@ class Contact(models.Model):
 
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
-		if not self.pk and Introduction.objects.exists():
+		if not self.pk and Contact.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
