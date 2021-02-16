@@ -1,10 +1,60 @@
-html {
-  scroll-behavior: smooth;
+body {
+  background: linear-gradient(to right, #040c4e 50%, #004e92 50%);
+  color: #fff;
+}
+* {
+  color: #fff !important;
 }
 
-body {
-  background-color: #f5f5f5;
-  color: #4e4e4e;
+
+
+#mainNav {
+  background: linear-gradient(to right, #040c4e 50%, #004e92 50%);
+}
+
+.button.button-a.button-big,
+.btn-primary {
+  background: linear-gradient(to left, #040c4e 50%, #004e92 50%);
+  border: none;
+}
+
+#about {
+  background: linear-gradient(to left, #040c4e 50%, #004e92 50%);
+}
+
+#about .box-shadow-full {
+  background: #131f33f5;
+}
+
+#service {
+  background: linear-gradient(to right, #040c4e 50%, #004e92 50%); 
+}
+
+#service .service-box {
+  background: #131f33f5;
+}
+
+#work {
+ background: linear-gradient(to left, #040c4e 50%, #004e92 50%); 
+}
+
+#work .work-box {
+  background: #131f33f5;
+}
+
+#blog {
+  background: linear-gradient(to right, #040c4e 50%, #004e92 50%);
+}
+
+#blog .card.card-blog {
+  background: #131f33f5;
+}
+#contact {
+  background: #131f33f5;
+}
+
+hr {
+  background-color: #fff;
 }
 
 h1,
@@ -13,7 +63,8 @@ h3,
 h4,
 h5,
 h6 {
-  color: #1e1e1e;
+  color: #fff;
+  font-weight: 1.2em;
 }
 
 a {
@@ -173,7 +224,7 @@ a:hover {
   position: absolute;
   height: 3px;
   background-color: #0078ff;
-  width: 100px;
+  width: 50%;
   bottom: -12px;
 }
 
@@ -448,7 +499,7 @@ a:hover {
 .navbar-b.navbar-reduce .active > .nav-link:before,
 .navbar-b.navbar-reduce .nav-link.show:before,
 .navbar-b.navbar-reduce .nav-link.active:before {
-  width: 35px;
+  width: 70px;
 }
 
 .navbar-b.navbar-trans .nav-link:before {
@@ -474,7 +525,7 @@ a:hover {
 }
 
 .navbar-b.navbar-reduce .nav-link {
-  color: #0078ff;
+  color: #fff;
 }
 
 .navbar-b.navbar-reduce .nav-link:before {
@@ -497,7 +548,7 @@ a:hover {
 }
 
 .navbar-b.navbar-reduce .navbar-toggler span {
-  background-color: #1B1B1B;
+  color: #fff !important;
 }
 
 .navbar-b .navbar-brand {
@@ -713,7 +764,7 @@ a:hover {
 
 .service-box .service-ico {
   margin-bottom: 1rem;
-  color: #1e1e1e;
+  color: #ffffff;
 }
 
 .service-box .ico-circle {
@@ -792,13 +843,15 @@ a:hover {
 }
 
 .work-content .w-more .w-ctegory {
-  color: #0078ff;
+  color: #0078ff !important;
 }
 
 .work-content .w-like {
   font-size: 2.5rem;
-  color: #0078ff;
   float: right;
+}
+.work-content .w-like span {
+  color: #0078ff !important;
 }
 
 .work-content .w-like a {
@@ -878,7 +931,7 @@ a:hover {
   color: #fff;
   padding: 0 15px 5px;
   overflow: hidden;
-  background-color: #0078ff;
+  background: linear-gradient(to right, #040c4e 50%, #004e92 50%);;
   border-radius: 4px;
 }
 
@@ -905,7 +958,7 @@ a:hover {
 }
 
 .card-blog .post-date {
-  color: #4e4e4e;
+  color: #007bff !important;
   display: inline-block;
   float: right;
 }
@@ -1261,4 +1314,8 @@ footer .credits a {
   .back-to-top {
     bottom: 15px;
   }
+}
+
+.card-footer {
+  background: #080e19f5 !important;
 }
