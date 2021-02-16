@@ -11,7 +11,9 @@ from .models import (
 	Portifolio,
 	Categories,
 	BlogSection,
-	Blogs
+	Blogs,
+	Contact,
+	SocialMedia
 )
 
 
@@ -70,7 +72,7 @@ admin.site.register(PortifolioSection, PortifolioSectionAdmin)
 
 
 class PortifolioAdmin(admin.ModelAdmin):
-	list_display = ('title', 'added_date')
+	list_display = ('description', 'added_date')
 
 admin.site.register(Portifolio, PortifolioAdmin)
 
@@ -92,8 +94,21 @@ class BlogsAdmin(admin.ModelAdmin):
 	list_display = ('title', 'author', 'added_date')
 
 
+	# Save authenticated user as an author when author field is not given
 	def save_model(self, request, obj, form, change):
 		obj.author = request.user
 		super().save_model(request, obj, form, change)
 
 admin.site.register(Blogs, BlogsAdmin)
+
+
+class ContactAdmin(admin.ModelAdmin):
+	list_display = ('location', 'added_date')
+
+admin.site.register(Contact, ContactAdmin)
+
+
+class SocialMediaAdmin(admin.ModelAdmin):
+	list_display = ('name', 'added_date')
+
+admin.site.register(SocialMedia, SocialMediaAdmin)
