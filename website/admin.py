@@ -8,8 +8,10 @@ from .models import (
 	Sevices,
 	Stastics,
 	PortifolioSection,
+	Portifolio,
 	Categories,
-	Portifolio
+	BlogSection,
+	Blogs
 )
 
 
@@ -67,13 +69,31 @@ class PortifolioSectionAdmin(admin.ModelAdmin):
 admin.site.register(PortifolioSection, PortifolioSectionAdmin)
 
 
+class PortifolioAdmin(admin.ModelAdmin):
+	list_display = ('title', 'added_date')
+
+admin.site.register(Portifolio, PortifolioAdmin)
+
+
 class CategoriesAdmin(admin.ModelAdmin):
 	list_display = ('category', 'added_date')
 
 admin.site.register(Categories, CategoriesAdmin)
 
 
-class PortifolioAdmin(admin.ModelAdmin):
-	list_display = ('title', 'added_date')
+class BlogSectionAdmin(admin.ModelAdmin):
+	list_display = ('head', 'added_date')
 
-admin.site.register(Portifolio, PortifolioAdmin)
+admin.site.register(BlogSection, BlogSectionAdmin)
+
+
+class BlogsAdmin(admin.ModelAdmin):
+	fields = ('image', 'title', 'description', 'category')
+	list_display = ('title', 'author', 'added_date')
+
+
+	def save_model(self, request, obj, form, change):
+		obj.author = request.user
+		super().save_model(request, obj, form, change)
+
+admin.site.register(Blogs, BlogsAdmin)
