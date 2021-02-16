@@ -73,3 +73,31 @@ class Skills(models.Model):
 	class Meta:
 		verbose_name_plural = 'Skills'
 
+
+class ServiceSection(models.Model):
+	heading = models.CharField(max_length=250)
+	paragraph = models.TextField()
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	def __str__(self):
+		return self.heading
+
+
+	class Meta:
+		verbose_name_plural = 'Service section'
+
+
+class Sevices(models.Model):
+	icon = models.CharField(max_length=200)
+	title = = models.CharField(max_length=250)
+	description = models.CharField(max_length=500)
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	def __str__(self):
+		return self.title
+
+
+	class Meta:
+		verbose_name_plural = 'Services'
