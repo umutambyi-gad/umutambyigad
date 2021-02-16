@@ -76,7 +76,7 @@ admin.site.register(PortifolioSection, PortifolioSectionAdmin)
 
 
 class PortifolioAdmin(admin.ModelAdmin):
-	list_display = ('description', 'added_date')
+	list_display = ('category', 'added_date')
 
 admin.site.register(Portifolio, PortifolioAdmin)
 

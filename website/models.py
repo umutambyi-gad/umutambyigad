@@ -169,20 +169,6 @@ class PortifolioSection(models.Model):
 		verbose_name_plural = 'Portifolio section'
 
 
-class Portifolio(models.Model):
-	image = models.ImageField(upload_to='images')
-	description = models.CharField(max_length=250)
-	added_date = models.DateTimeField(auto_now_add=True)
-
-
-	def __str__(self):
-		return self.title
-
-
-	class Meta:
-		verbose_name_plural = 'Portifolio'
-
-
 class Categories(models.Model):
 	category = models.CharField(max_length=250)
 	added_date = models.DateTimeField(auto_now_add=True)
@@ -194,6 +180,22 @@ class Categories(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Categories'
+
+
+class Portifolio(models.Model):
+	image = models.ImageField(upload_to='images')
+	description = models.CharField(max_length=250)
+	category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	def __str__(self):
+		return self.description[:20]
+
+
+	class Meta:
+		verbose_name_plural = 'Portifolio'
+
 
 
 class BlogSection(models.Model):
