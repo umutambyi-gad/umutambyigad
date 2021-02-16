@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
-	Careers,
 	Introduction,
+	Careers,
 	Profile,
 	Skills,
 	ServiceSection,
@@ -18,21 +18,21 @@ from .models import (
 
 
 # Register your models here.
+class IntroductionAdmin(admin.ModelAdmin):
+	def save_model(self, request, obj, form, change):
+		obj.user = request.user
+		super().save_model(request, obj, form, change)
+
+	list_display = ('username', 'added_date')
+
+admin.site.register(Introduction, IntroductionAdmin)
+
+
 class CareersAdmin(admin.ModelAdmin):
 	list_display = ('career', 'added_date')
 	list_filter = ('added_date', )
 
 admin.site.register(Careers, CareersAdmin)
-
-
-class IntroductionAdmin(admin.ModelAdmin):
-	def save_model(self, request, obj, form, change):
-		obj.username = request.user
-		return super().save_model(request, obj, form, change)
-
-	list_display = ('username', 'added_date')
-
-admin.site.register(Introduction, IntroductionAdmin)
 
 
 class ProfileAdmin(admin.ModelAdmin):

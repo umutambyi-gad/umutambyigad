@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Introduction(models.Model):
-	username = models.CharField(max_length=200)
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	background_image = models.ImageField(upload_to='images')
 	salutation = models.CharField(max_length=250)
 	about = models.CharField(max_length=300)
@@ -19,7 +19,7 @@ class Introduction(models.Model):
 
 
 	def __str__(self):
-		return self.username
+		return self.user.username
 
 
 	class Meta:
