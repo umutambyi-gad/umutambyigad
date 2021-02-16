@@ -179,6 +179,13 @@ class BlogSection(models.Model):
 	added_date = models.DateTimeField(auto_now_add=True)
 
 
+	# This method will avoid to allow more than one instance being saved
+	def save(self, *args, **kwargs):
+		if not self.pk and Introduction.objects.exists():
+			return False
+		super().save(*args, **kwargs)
+
+
 	def __str__(self):
 		return self.head
 
@@ -202,3 +209,40 @@ class Blogs(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Blogs'
+
+
+class Contact(models.Model):
+	location = models.CharField(max_length=250)
+	telephone = models.CharField(max_length=250)
+	email = models.CharField(max_length=250)
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	# This method will avoid to allow more than one instance being saved
+	def save(self, *args, **kwargs):
+		if not self.pk and Introduction.objects.exists():
+			return False
+		super().save(*args, **kwargs)
+
+
+	def __str__(self):
+		return self.location
+
+
+	class Meta:
+		verbose_name_plural = 'Contact'
+
+
+class SocialMedia(models.Model):
+	name = models.CharField(max_length=250)
+	icon = models.CharField(max_length=250)
+	link = models.URLField()
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	def __str__(self):
+		return self.name
+
+	
+	class Meta:
+		verbose_name_plural = 'Contact'
