@@ -23,7 +23,7 @@ class IntroductionAdmin(admin.ModelAdmin):
 		obj.user = request.user
 		super().save_model(request, obj, form, change)
 
-	list_display = ('username', 'added_date')
+	list_display = ('user', 'added_date')
 
 admin.site.register(Introduction, IntroductionAdmin)
 
