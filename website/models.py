@@ -80,6 +80,13 @@ class ServiceSection(models.Model):
 	added_date = models.DateTimeField(auto_now_add=True)
 
 
+	# This method will avoid to allow more than one instance being saved
+	def save(self, *args, **kwargs):
+		if not self.pk and Introduction.objects.exists():
+			return False
+		super().save(*args, **kwargs)
+
+
 	def __str__(self):
 		return self.heading
 
@@ -90,7 +97,7 @@ class ServiceSection(models.Model):
 
 class Sevices(models.Model):
 	icon = models.CharField(max_length=200)
-	title = = models.CharField(max_length=250)
+	title = models.CharField(max_length=250)
 	description = models.CharField(max_length=500)
 	added_date = models.DateTimeField(auto_now_add=True)
 
@@ -101,3 +108,65 @@ class Sevices(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Services'
+
+
+class Stastics(models.Model):
+	icon = models.CharField(max_length=200)
+	title = models.CharField(max_length=250)
+	rank = models.IntegerField(default=0)
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	def __str__(self):
+		return self.title
+
+
+	class Meta:
+		verbose_name_plural = 'Stastics'
+
+
+class PortifolioSection(models.Model):
+	heading = models.CharField(max_length=250)
+	paragraph = models.TextField()
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	# This method will avoid to allow more than one instance being saved
+	def save(self, *args, **kwargs):
+		if not self.pk and Introduction.objects.exists():
+			return False
+		super().save(*args, **kwargs)
+
+
+	def __str__(self):
+		return self.heading
+
+
+class Categories(models.Model):
+	category = models.CharField(max_length=250)
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	def __str__(self):
+		return self.category
+
+
+	class Meta:
+		verbose_name_plural = 'Categories'
+
+
+class Portifolio(models.Model):
+	image = models.ImageField(upload_to='images')
+	title = models.CharField(max_length=250)
+	category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	def __str__(self):
+		return self.title
+
+
+	class Meta:
+		verbose_name = 'Portifolio'
+		verbose_name_plural = 'Portifolios'
+
