@@ -3,7 +3,13 @@ from .models import (
 	Careers,
 	Introduction,
 	Profile,
-	Skills
+	Skills,
+	ServiceSection,
+	Sevices,
+	Stastics,
+	PortifolioSection,
+	Categories,
+	Portifolio
 )
 
 
@@ -35,3 +41,39 @@ class SkillsAdmin(admin.ModelAdmin):
 	list_display = ('name', 'added_date')
 
 admin.site.register(Skills, SkillsAdmin)
+
+
+class ServiceSectionAdmin(admin.ModelAdmin):
+	list_display = ('heading', 'added_date')
+
+admin.site.register(ServiceSection, ServiceSectionAdmin)
+
+
+class SevicesAdmin(admin.ModelAdmin):
+	list_display = ('title', 'added_date')
+
+admin.site.register(Sevices, SevicesAdmin)
+
+
+class StasticsAdmin(admin.ModelAdmin):
+	list_display = ('title', 'added_date')
+
+admin.site.register(Stastics, StasticsAdmin)
+
+
+class PortifolioSectionAdmin(admin.ModelAdmin):
+	list_display = ('heading', 'added_date')
+
+admin.site.register(PortifolioSection, PortifolioSectionAdmin)
+
+
+class CategoriesAdmin(admin.ModelAdmin):
+	list_display = ('category', 'added_date')
+
+admin.site.register(Categories, CategoriesAdmin)
+
+
+class PortifolioAdmin(admin.ModelAdmin):
+	list_display = ('title', 'added_date')
+
+admin.site.register(Portifolio, PortifolioAdmin)
