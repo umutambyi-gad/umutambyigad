@@ -1,7 +1,9 @@
 from django.contrib import admin
 from .models import (
 	Careers,
-	Introduction
+	Introduction,
+	Profile,
+	Skills
 )
 
 
