@@ -3,21 +3,11 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Careers(models.Model):
-	career = models.CharField(max_length=250)
-	added_date = models.DateTimeField(auto_now_add=True)
-	
-
-	def __str__(self):
-		return self.career
-
-
 class Introduction(models.Model):
 	username = models.CharField(max_length=200)
 	background_image = models.ImageField(upload_to='images')
 	salutation = models.CharField(max_length=250)
 	about = models.CharField(max_length=300)
-	careers = models.ManyToManyField(Careers)
 	added_date = models.DateTimeField(auto_now_add=True)
 
 
@@ -34,6 +24,19 @@ class Introduction(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Introduction'
+
+
+class Careers(models.Model):
+	career = models.CharField(max_length=250)
+	added_date = models.DateTimeField(auto_now_add=True)
+	
+
+	def __str__(self):
+		return self.career
+
+	class Meta:
+		verbose_name_plural = 'Careers'
+
 
 
 class Profile(models.Model):
@@ -243,6 +246,6 @@ class SocialMedia(models.Model):
 	def __str__(self):
 		return self.name
 
-	
+
 	class Meta:
 		verbose_name_plural = 'Contact'
