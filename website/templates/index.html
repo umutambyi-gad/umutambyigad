@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load cloudinary %}
+
 {% block title %}| Home{% endblock %}
 
 {% block meta %}
@@ -44,7 +46,7 @@
               <div class="row">
                 <div class="col-sm-6 col-md-5">
                   <div class="about-img">
-                    <img src="{{ profile.avatar.url }}" class="img-fluid rounded b-shadow-a" alt="profile image of {{ profile.names }}">
+                    {% cloudinary profile.avatar.url class="img-fluid rounded b-shadow-a" %}
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-7">
@@ -168,7 +170,7 @@
         <div class="work-box">
           <a href="{{ portifolio.image.url }}" data-lightbox="gallery-mf">
             <div class="work-img">
-              <img src="{{ portifolio.image.url }}" alt="{{ portifolio.description }} - portifolio thumbnail" class="img-fluid">
+              {% cloudinary portifolio.image.url class="img-fluid" %}
             </div>
             <div class="work-content">
               <div class="row">
@@ -215,7 +217,9 @@
       <div class="col-md-4">
         <div class="card card-blog">
           <div class="card-img">
-            <a href="blog-single.html"><img src="{{ blog.image.url }}" alt="{{ blog.title }} - blog thumbnail" class="img-fluid"></a>
+            <a href="blog-single.html">
+              {% cloudinary blog.image.url class="img-fluid" %}
+            </a>
           </div>
           <div class="card-body">
             <div class="card-category-box">
@@ -231,7 +235,7 @@
           <div class="card-footer">
             <div class="post-author">
               <a href="#">
-                <img src="{{ blog.author.profile.avatar.url }}" alt="{{ blog.title }} - blog author image" class="avatar rounded-circle">
+                {% cloudinary blog.author.profile.avatar.url class="avatar rounded-circle" %}
                 <span class="author">{{ blog.author.get_full_name }}</span>
               </a>
             </div>
