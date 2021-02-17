@@ -11,15 +11,15 @@
 {% endblock %}
 
 {% block content %}
-<div id="home" class="intro route bg-image" style="background-image: url({% static 'img/placeholder.png' %})">
+<div id="home" class="intro route bg-image" style="background-image: url({{ Intro.background_image }})">
   <div class="overlay-itro"></div>
   <div class="intro-content display-table">
     <div class="table-cell">
       <div class="container">
-        <p class="display-6 color-d">Salutation</p>
-        <h1 class="intro-title mb-4">Names</h1>
+        <p class="display-6 color-d">{{ Intro.salutation }}</p>
+        <h1 class="intro-title mb-4">{{ Intro.about }}</h1>
         <p class="intro-subtitle">
-          <span class="text-slider-items">career</span>
+          <span class="text-slider-items">{% for career in careers %}{{ career }},{% endfor %}</span>
           <strong class="text-slider"></strong>
         </p>
         <p class="pt-3">
@@ -40,26 +40,28 @@
               <div class="row">
                 <div class="col-sm-6 col-md-5">
                   <div class="about-img">
-                    <img src="{% static 'img/placeholder-person.png' %}" class="img-fluid rounded b-shadow-a" alt="">
+                    <img src="{{ profile.avatar }}" class="img-fluid rounded b-shadow-a" alt="">
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-7">
                   <div class="about-info">
-                    <p><span class="title-s">Name: </span> <span>...</span></p>
-                    <p><span class="title-s">Profile: </span> <span>...</span></p>
-                    <p><span class="title-s">Email: </span> <span>...</span></p>
-                    <p><span class="title-s">Phone: </span> <span>...</span></p>
+                    <p><span class="title-s">Name: </span> <span>{{ profile.names }}</span></p>
+                    <p><span class="title-s">Profile: </span> <span>{{ profile.profile }}</span></p>
+                    <p><span class="title-s">Email: </span> <span>{{ profile.email }}</span></p>
+                    <p><span class="title-s">Phone: </span> <span>{{ profile.phone }}</span></p>
                   </div>
                 </div>
               </div>
               <div class="skill-mf">
                 <h3 class="mb-4">Skills</h3>
                 <hr class="mb-2">
-                <span>...</span> <span class="pull-right">50%</span>
+                {% for skill in skills %}
+                <span>{{ skill.name }}</span> <span class="pull-right">{{ skill.rate }}%</span>
                 <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 55%;" aria-valuenow="85" aria-valuemin="0"
+                  <div class="progress-bar" role="progressbar" style="width: {{ skill.rate }}%;" aria-valuenow="{{ skill.rate }}" aria-valuemin="0"
                     aria-valuemax="100"></div>
                 </div>
+                {% endfor %}
               </div>
             </div>
             <div class="col-md-6">
@@ -69,15 +71,7 @@
                     About me
                   </h5>
                 </div>
-                <p class="lead">
-                  1<sup>st</sup> para..
-                </p>
-                <p class="lead">
-                  2<sup>nd</sup> para..
-                </p>
-                <p class="lead">
-                  3<sup>rd</sup> para..
-                </p>
+                {{ profile.about | safe }}
               </div>
             </div>
           </div>
@@ -93,10 +87,10 @@
       <div class="col-sm-12">
         <div class="title-box text-center">
           <h3 class="title-a">
-            Services
+            {{ service_section.heading }}
           </h3>
           <p class="subtitle-a">
-            intro...
+            {{ service_section.paragraph }}
           </p>
           <div class="line-mf"></div>
         </div>
@@ -104,34 +98,37 @@
     </div>
     <div class="row">
       <div class="col-md-4">
+        {% for service in services %}
         <div class="service-box">
           <div class="service-ico">
-            <span class="ico-circle"><i class="ion-monitor"></i></span>
+            <span class="ico-circle"><i class="{{ service.icon }}"></i></span>
           </div>
           <div class="service-content">
-            <h2 class="s-title">Web ...</h2>
+            <h2 class="s-title">{{ service.title }}</h2>
             <p class="s-description text-center">
-              Desc...
+              {{ service.description }}
             </p>
           </div>
         </div>
+        {% endfor %}
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-counter paralax-mf bg-image" style="background-image: url({% static 'img/placeholder.png' %})">
+<div class="section-counter paralax-mf bg-image" style="background-image: url({{ stats_sections.background_image }})">
   <div class="overlay-mf"></div>
   <div class="container">
     <div class="row">
+      {% for stat in stats %}
       <div class="col-sm-3 col-lg-4">
         <div class="counter-box">
           <div class="counter-ico">
-            <span class="ico-circle"><i class="ion-checkmark-round"></i></span>
+            <span class="ico-circle"><i class="{{ stat.icon }}"></i></span>
           </div>
           <div class="counter-num">
-            <p class="counter">count...</p>
-            <span class="counter-text">count title...</span>
+            <p class="counter">{{ stat.rank }}</p>
+            <span class="counter-text">{{ stat.title }}</span>
           </div>
         </div>
       </div>
@@ -145,28 +142,29 @@
       <div class="col-sm-12">
         <div class="title-box text-center">
           <h3 class="title-a">
-            Portfolio
+            {{ portifolio_section.heading }}
           </h3>
           <p class="subtitle-a">
-            desc...
+            {{ portifolio_section.paragraph }}
           </p>
           <div class="line-mf"></div>
         </div>
       </div>
     </div>
     <div class="row">
+      {% for portifolio in portifolios %}
       <div class="col-md-4">
         <div class="work-box">
-          <a href="{% static 'img/placeholder.png' %}" data-lightbox="gallery-mf">
+          <a href="{{ portifolio.image }}" data-lightbox="gallery-mf">
             <div class="work-img">
-              <img src="{% static 'img/placeholder.png' %}" alt="" class="img-fluid">
+              <img src="{{ portifolio.image }}" alt="" class="img-fluid">
             </div>
             <div class="work-content">
               <div class="row">
                 <div class="col-sm-8">
-                  <h2 class="w-title">desc...</h2>
+                  <h2 class="w-title">{{ portifolio.description }}</h2>
                   <div class="w-more">
-                    <span class="w-ctegory">title</span> / <span class="w-date">date</span>
+                    <span class="w-ctegory">{{ portifolio.category }}</span> / <span class="w-date">{{ portifolio.added_date.date }}</span>
                   </div>
                 </div>
                 <div class="col-sm-4">
