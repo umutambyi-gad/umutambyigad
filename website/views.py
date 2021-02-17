@@ -32,7 +32,11 @@ class HomeView(View):
 		'stats_sections': StatisticSection.objects.first(),
 		'stats': Statistics.objects.all(),
 		'portifolio_section': PortifolioSection.objects.first(),
-		'portifolios': Portifolio.objects.all()
+		'portifolios': Portifolio.objects.all(),
+		'blog_section': BlogSection.objects.first(),
+		'blogs': Blogs.objects.all(),
+		'contact': Contact.objects.first(),
+		'social_media': SocialMedia.objects.all()
 		}
 		return render(request, 'index.html', context)
 
