@@ -132,7 +132,9 @@ class StatisticSection(models.Model):
 	# method to return number for bootstrap col ex. col-lg-{collumns_count}
 	@classmethod
 	def collumns_count(cls):
-		return 12 // cls.objects.count()
+		if cls.objects.count() > 0:
+			return 12 // cls.objects.count()
+		return False
 
 
 	def __str__(self):
