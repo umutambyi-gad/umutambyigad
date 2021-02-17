@@ -1,2 +1,2 @@
 release: python manage.py migrate
-gunicorn umutambyigad.wsgi --log-file -
+web: gunicorn umutambyigad.wsgi --log-file -
