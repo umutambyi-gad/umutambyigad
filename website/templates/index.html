@@ -11,6 +11,8 @@
 {% endblock %}
 
 {% block content %}
+
+{% if Intro %}
 <div id="home" class="intro route bg-image" style="background-image: url({{ Intro.background_image.url }})">
   <div class="overlay-itro"></div>
   <div class="intro-content display-table">
@@ -29,7 +31,9 @@
     </div>
   </div>
 </div>
+{% endif %}
 
+{% if profile %}
 <section id="about" class="about-mf sect-pt4 route">
   <div class="container">
     <div class="row">
@@ -80,7 +84,9 @@
     </div>
   </div>
 </section>
+{% endif %}
 
+{% if service_section %}
 <section id="service" class="services-mf route">
   <div class="container">
     <div class="row">
@@ -115,8 +121,10 @@
     </div>
   </div>
 </section>
+{% endif %}
 
-<div class="section-counter paralax-mf bg-image" style="background-image: url({{ stats_sections.background_image }})">
+{% if stats_section %}
+<div class="section-counter paralax-mf bg-image" style="background-image: url({{ stats_section.background_image }})">
   <div class="overlay-mf"></div>
   <div class="container">
     <div class="row">
@@ -132,10 +140,13 @@
           </div>
         </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 </div>
+{% endif %}
 
+{% if portifolio_section %}
 <section id="work" class="portfolio-mf sect-pt4 route">
   <div class="container">
     <div class="row">
@@ -177,10 +188,13 @@
           </a>
         </div>
       </div>
+      {% endfor %}
     </div>
   </div>
 </section>
+{% endif %}
 
+{% if blog_section %}
 <section id="blog" class="blog-mf sect-pt4 route">
   <div class="container">
     <div class="row">
@@ -231,7 +245,9 @@
     </div>
   </div>
 </section>
+{% endif %}
 
+{% if contact %}
 <section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url({{ contact.section_background }})">
   <div class="overlay-mf"></div>
   <div class="container">
@@ -328,4 +344,6 @@
     </div>
   </footer>
 </section>
+{% endif %}
+
 {% endblock %}
