@@ -103,8 +103,8 @@
       </div>
     </div>
     <div class="row">
+      {% for service in services %}
       <div class="col-md-4">
-        {% for service in services %}
         <div class="service-box">
           <div class="service-ico">
             <span class="ico-circle"><i class="{{ service.icon }}"></i></span>
@@ -116,8 +116,8 @@
             </p>
           </div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
   </div>
 </section>
