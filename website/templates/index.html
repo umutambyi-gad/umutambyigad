@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="home" class="intro route bg-image" style="background-image: url({{ Intro.background_image }})">
+<div id="home" class="intro route bg-image" style="background-image: url({{ Intro.background_image.url }})">
   <div class="overlay-itro"></div>
   <div class="intro-content display-table">
     <div class="table-cell">
@@ -40,7 +40,7 @@
               <div class="row">
                 <div class="col-sm-6 col-md-5">
                   <div class="about-img">
-                    <img src="{{ profile.avatar }}" class="img-fluid rounded b-shadow-a" alt="">
+                    <img src="{{ profile.avatar.url }}" class="img-fluid rounded b-shadow-a" alt="profile image of {{ profile.names }}">
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-7">
@@ -155,9 +155,9 @@
       {% for portifolio in portifolios %}
       <div class="col-md-4">
         <div class="work-box">
-          <a href="{{ portifolio.image }}" data-lightbox="gallery-mf">
+          <a href="{{ portifolio.image.url }}" data-lightbox="gallery-mf">
             <div class="work-img">
-              <img src="{{ portifolio.image }}" alt="" class="img-fluid">
+              <img src="{{ portifolio.image.url }}" alt="{{ portifolio.description }} - portifolio thumbnail" class="img-fluid">
             </div>
             <div class="work-content">
               <div class="row">
@@ -187,50 +187,52 @@
       <div class="col-sm-12">
         <div class="title-box text-center">
           <h3 class="title-a">
-            Blogs
+            {{ blog_section.head }}
           </h3>
           <p class="subtitle-a">
-            Desc...
+            {{ blog_section.paragraph }}
           </p>
           <div class="line-mf"></div>
         </div>
       </div>
     </div>
     <div class="row">
+      {% for blog in blogs %}
       <div class="col-md-4">
         <div class="card card-blog">
           <div class="card-img">
-            <a href="blog-single.html"><img src="{% static 'img/placeholder.png' %}" alt="" class="img-fluid"></a>
+            <a href="blog-single.html"><img src="{{ blog.image.url }}" alt="{{ blog.title }} - blog thumbnail" class="img-fluid"></a>
           </div>
           <div class="card-body">
             <div class="card-category-box">
               <div class="card-category">
-                <h6 class="category">category</h6>
+                <h6 class="category">{{ blog.category }}</h6>
               </div>
             </div>
-            <h3 class="card-title"><a href="blog-single.html">head...</a></h3>
+            <h3 class="card-title"><a href="blog-single.html">{{ blog.title }}</a></h3>
             <p class="card-description">
-              intro...
+              {{ blog.description }}
             </p>
           </div>
           <div class="card-footer">
             <div class="post-author">
               <a href="#">
-                <img src="{% static 'img/placeholder-person.png' %}" alt="" class="avatar rounded-circle">
-                <span class="author">author...</span>
+                <img src="{{ blog.author.user.profile.avatar.url }}" alt="{{ blog.title }} - blog author image" class="avatar rounded-circle">
+                <span class="author">{{ blog.author.get_full_name }}</span>
               </a>
             </div>
             <div class="post-date">
-              <span class="ion-ios-clock-outline"></span> date...
+              <span class="ion-ios-clock-outline"></span> {{ blog.added_date.date }}
             </div>
           </div>
         </div>
       </div>
+      {% enfor %}
     </div>
   </div>
 </section>
 
-<section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url({% static 'img/placeholder.png' %})">
+<section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url({{ contact.section_background }})">
   <div class="overlay-mf"></div>
   <div class="container">
     <div class="row">
@@ -291,14 +293,20 @@
                     you can reach...
                   </p>
                   <ul class="list-ico">
-                    <li><span class="ion-ios-location"></span> Rwanda...</li>
-                    <li><span class="ion-ios-telephone"></span> +000</li>
-                    <li><span class="ion-email"></span> email@mail</li>
+                    <li><span class="ion-ios-location"></span> {{ contact.location }}</li>
+                    <li><span class="ion-ios-telephone"></span>{{ contact.telephone }}</li>
+                    <li><span class="ion-email"></span>{{ contact.email }}</li>
                   </ul>
                 </div>
                 <div class="socials">
                   <ul>
-                    <li><a href=""><span class="ico-circle"><i class="ion-social-instagram"></i></span></a></li>
+                    {% for social_medium in social_media %}
+                    <li>
+                      <a href="{{ social_medium.link }}">
+                        <span class="ico-circle"><i class="{{ social_medium.icon }}"></i></span>
+                      </a>
+                    </li>
+                    {% endfor %}
                   </ul>
                 </div>
               </div>
@@ -313,7 +321,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="copyright-box">
-            <p class="copyright">&copy; Copyright by <strong>Umutambyi</strong></p>
+            <p class="copyright">&copy; Copyright by <strong>Umutambyi Gad</strong></p>
           </div>
         </div>
       </div>
