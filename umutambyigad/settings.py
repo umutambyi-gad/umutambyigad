@@ -14,6 +14,7 @@ import os
 from decouple import config
 import dj_database_url
 import cloudinary
+import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -97,7 +98,7 @@ else:
        'default': dj_database_url.config(
            default=config('DATABASE_URL')
        )
-   }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -156,3 +157,5 @@ cloudinary.config(
     api_key = config('api_key'),
     api_secret = config('api_secret')
 )
+
+django_heroku.settings(locals())
