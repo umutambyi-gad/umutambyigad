@@ -29,8 +29,9 @@ class HomeView(View):
 		'skills': Skills.objects.all(),
 		'service_section': ServiceSection.objects.first(),
 		'services': Services.objects.all(),
-		'stats_sections': StatisticSection.objects.first(),
+		'stats_section': StatisticSection.objects.first(),
 		'stats': Statistics.objects.all(),
+		'col_lg': StatisticSection.collumns_count(),
 		'portifolio_section': PortifolioSection.objects.first(),
 		'portifolios': Portifolio.objects.all(),
 		'blog_section': BlogSection.objects.first(),
@@ -42,4 +43,5 @@ class HomeView(View):
 
 
 	def post(self, request, *args, **kwargs):
-		pass
+		if request.is_ajax():
+			pass

@@ -129,7 +129,7 @@
   <div class="container">
     <div class="row">
       {% for stat in stats %}
-      <div class="col-sm-3 col-lg-{{ colno }}">
+      <div class="col-lg-{{ col_lg }}">
         <div class="counter-box">
           <div class="counter-ico">
             <span class="ico-circle"><i class="{{ stat.icon }}"></i></span>
@@ -306,7 +306,7 @@
                 </div>
                 <div class="more-info">
                   <p class="lead">
-                    you can reach...
+                    you can reach me
                   </p>
                   <ul class="list-ico">
                     <li><span class="ion-ios-location"></span> {{ contact.location }}</li>
@@ -337,7 +337,11 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="copyright-box">
-            <p class="copyright">&copy; Copyright by <strong>Umutambyi Gad</strong></p>
+            <p class="copyright">&copy; Copyright by
+              <strong>
+                <a href="#about">Umutambyi Gad</a>
+              </strong>
+          </p>
           </div>
         </div>
       </div>
