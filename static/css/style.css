@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   background: linear-gradient(to right, #040c4e 50%, #004e92 50%);
   color: #fff;
@@ -136,7 +139,7 @@ a:hover {
 }
 
 .overlay-mf {
-  background-color: #0078ff;
+  background-color: #0078ff87;
 }
 
 .overlay-mf {
@@ -146,7 +149,7 @@ a:hover {
   padding: 0;
   height: 100%;
   width: 100%;
-  opacity: .7;
+  opacity: .8;
 }
 
 .paralax-mf {
@@ -789,9 +792,10 @@ a:hover {
 //--//-->   COUNTER
 ======================================*/
 
-.counter-box {
-  color: #fff;
+.counter-box{
   text-align: center;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .counter-ico {
@@ -1125,6 +1129,7 @@ footer {
 
 footer .copyright {
   margin-bottom: .3rem;
+  font-weight: 700;
 }
 
 footer .credits {
@@ -1136,12 +1141,12 @@ footer .credits a {
 }
 
 /*======================================
-//--//-->   CONtaCT FORM
+//--//-->   CONTACT FORM
 ======================================*/
 
 #sendmessage {
-  color: #0078ff;
-  border: 1px solid #0078ff;
+  color: #0078ff !important;
+  border: 1px solid #0078ff !important;
   display: none;
   text-align: center;
   padding: 15px;
@@ -1150,9 +1155,9 @@ footer .credits a {
 }
 
 #errormessage {
-  color: red;
+  color: red !important;
   display: none;
-  border: 1px solid red;
+  border: 1px solid red !important;
   text-align: center;
   padding: 15px;
   font-weight: 600;
@@ -1166,7 +1171,7 @@ footer .credits a {
 }
 
 .validation {
-  color: red;
+  color: red !important;
   display: none;
   margin: 0 0 20px;
   font-weight: 400;
@@ -1308,7 +1313,7 @@ footer .credits a {
 
 @media (max-width: 1024px) {
   .bg-image {
-    background-attachment: scroll;
+    background-attachment: fixed;
   }
 }
 
@@ -1320,4 +1325,7 @@ footer .credits a {
 
 .card-footer {
   background: #080e19f5 !important;
+}
+footer strong a{
+  color: skyblue !important;
 }
