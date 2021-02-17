@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 from django.views import View
+from urllib.parse import unquote
+from django.core.mail import send_mail
 from .models import (
 	Introduction,
 	Careers,
@@ -39,9 +42,24 @@ class HomeView(View):
 		'contact': Contact.objects.first(),
 		'social_media': SocialMedia.objects.all()
 		}
+
 		return render(request, 'index.html', context)
 
-
 	def post(self, request, *args, **kwargs):
-		if request.is_ajax():
-			pass
+		if request.is_ajax:
+			name = unquote(request.POST['name'])
+			from_email = unquote(request.POST['email'])
+			subject = unquote(request.POST['subject'])
+			message = unquote(request.POST['message'])
+
+			send_mail(
+				subject,
+				f'{name} sends {message}',
+				from_email,
+				['umutambyig@gmail.com']
+			)
+
+			return JsonResponse({
+				'message': 'OK'
+				}, status=200
+			)
