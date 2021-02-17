@@ -127,6 +127,12 @@ class StatisticSection(models.Model):
 		super().save(*args, **kwargs)
 
 
+	# method to return number for bootstrap col ex. col-lg-{collumns_count}
+	@classmethod
+	def collumns_count(cls):
+		return 12 // cls.objects.count()
+
+
 	def __str__(self):
 		return 'Statistic section'
 
