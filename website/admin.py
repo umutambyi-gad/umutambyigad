@@ -20,6 +20,7 @@ from .models import (
 
 # Register your models here.
 class IntroductionAdmin(admin.ModelAdmin):
+	# Save authenticated user as an author when author field is not given
 	def save_model(self, request, obj, form, change):
 		obj.user = request.user
 		super().save_model(request, obj, form, change)
@@ -37,6 +38,11 @@ admin.site.register(Careers, CareersAdmin)
 
 
 class ProfileAdmin(admin.ModelAdmin):
+	# Save authenticated user as an author when author field is not given
+	def save_model(self, request, obj, form, change):
+		obj.user = request.user
+		super().save_model(request, obj, form, change)
+
 	list_display = ('names' , 'added_date')
 
 admin.site.register(Profile, ProfileAdmin)
@@ -96,7 +102,6 @@ admin.site.register(BlogSection, BlogSectionAdmin)
 class BlogsAdmin(admin.ModelAdmin):
 	fields = ('image', 'title', 'description', 'category')
 	list_display = ('title', 'author', 'added_date')
-
 
 	# Save authenticated user as an author when author field is not given
 	def save_model(self, request, obj, form, change):
