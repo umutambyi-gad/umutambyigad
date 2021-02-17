@@ -1329,3 +1329,9 @@ footer .credits a {
 footer strong a{
   color: skyblue !important;
 }
+
+.form-control {
+  color: #000 !important;
+  font-weight: 600;
+  font-size: 18px;
+}
