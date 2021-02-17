@@ -40,6 +40,7 @@ class Careers(models.Model):
 
 
 class Profile(models.Model):
+	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	avatar = models.ImageField(upload_to='images')
 	names = models.CharField(max_length=250)
 	profile = models.CharField(max_length=250)
@@ -229,7 +230,7 @@ class Blogs(models.Model):
 
 
 	def __str__(self):
-		return self.author
+		return self.author.username
 
 
 	class Meta:
@@ -237,6 +238,7 @@ class Blogs(models.Model):
 
 
 class Contact(models.Model):
+	section_background = models.ImageField(upload_to='images')
 	location = models.CharField(max_length=250)
 	telephone = models.CharField(max_length=250)
 	email = models.CharField(max_length=250)
