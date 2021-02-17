@@ -1,11 +1,13 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
+
 
 
 # Create your models here.
 class Introduction(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	background_image = models.ImageField(upload_to='images')
+	background_image = CloudinaryField(upload_to='images')
 	salutation = models.CharField(max_length=250)
 	about = models.CharField(max_length=300)
 	added_date = models.DateTimeField(auto_now_add=True)
@@ -41,7 +43,7 @@ class Careers(models.Model):
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	avatar = models.ImageField(upload_to='images')
+	avatar = CloudinaryField(upload_to='images')
 	names = models.CharField(max_length=250)
 	profile = models.CharField(max_length=250)
 	email = models.CharField(max_length=250)
@@ -116,7 +118,7 @@ class Services(models.Model):
 
 
 class StatisticSection(models.Model):
-	background_image = models.ImageField(upload_to='images')
+	background_image = CloudinaryField(upload_to='images')
 	added_date = models.DateTimeField(auto_now_add=True)
 
 
@@ -190,7 +192,7 @@ class Categories(models.Model):
 
 
 class Portifolio(models.Model):
-	image = models.ImageField(upload_to='images')
+	image = CloudinaryField(upload_to='images')
 	description = models.CharField(max_length=250)
 	category = models.ForeignKey(Categories, on_delete=models.CASCADE)
 	added_date = models.DateTimeField(auto_now_add=True)
@@ -227,7 +229,7 @@ class BlogSection(models.Model):
 
 
 class Blogs(models.Model):
-	image = models.ImageField(upload_to='images')
+	image = CloudinaryField(upload_to='images')
 	category = models.ForeignKey(Categories, on_delete=models.CASCADE)
 	title = models.CharField(max_length=200)
 	description = models.TextField()
@@ -244,7 +246,7 @@ class Blogs(models.Model):
 
 
 class Contact(models.Model):
-	section_background = models.ImageField(upload_to='images')
+	section_background = CloudinaryField(upload_to='images')
 	location = models.CharField(max_length=250)
 	telephone = models.CharField(max_length=250)
 	email = models.CharField(max_length=250)
