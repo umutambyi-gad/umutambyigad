@@ -34,7 +34,7 @@ class HomeView(View):
 		'services': Services.objects.all(),
 		'stats_section': StatisticSection.objects.first(),
 		'stats': Statistics.objects.all(),
-		'col_lg': StatisticSection.collumns_count(),
+		'col_lg': Statistics.columns_count(),
 		'portifolio_section': PortifolioSection.objects.first(),
 		'portifolios': Portifolio.objects.all(),
 		'blog_section': BlogSection.objects.first(),

@@ -129,14 +129,6 @@ class StatisticSection(models.Model):
 		super().save(*args, **kwargs)
 
 
-	# method to return number for bootstrap col ex. col-lg-{collumns_count}
-	@classmethod
-	def collumns_count(cls):
-		if cls.objects.count() > 0:
-			return 12 // cls.objects.count()
-		return False
-
-
 	def __str__(self):
 		return 'Statistic section'
 
@@ -150,6 +142,14 @@ class Statistics(models.Model):
 	title = models.CharField(max_length=250)
 	rank = models.IntegerField(default=0)
 	added_date = models.DateTimeField(auto_now_add=True)
+
+
+	# method to return number for bootstrap col ex. col-lg-{collumns_count}
+	@classmethod
+	def columns_count(cls):
+		if cls.objects.count() > 0:
+			return 12 // cls.objects.count()
+		return False
 
 
 	def __str__(self):
