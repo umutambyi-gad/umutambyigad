@@ -315,9 +315,9 @@
                     {{ contact.short_message }}
                   </p>
                   <ul class="list-ico">
-                    <li><span class="ion-ios-location"></span> {{ contact.location }}</li>
-                    <li><span class="ion-ios-telephone"></span>{{ contact.telephone }}</li>
-                    <li><span class="ion-email"></span>{{ contact.email }}</li>
+                    <li><a href="#"><span class="ion-ios-location"></span> {{ contact.location }}</a></li>
+                    <li><a href="tel:{{ contact.telephone }}"><span class="ion-ios-telephone"></span>{{ contact.telephone }}</a></li>
+                    <li><a href="mailto:{{ contact.email }}"><span class="ion-email"></span>{{ contact.email }}</a></li>
                   </ul>
                 </div>
                 <div class="socials">
