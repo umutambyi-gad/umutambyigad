@@ -252,6 +252,7 @@ class Contact(models.Model):
 	location = models.CharField(max_length=250)
 	telephone = models.CharField(max_length=250)
 	email = models.CharField(max_length=250)
+	short_message = models.TextField()
 	added_date = models.DateTimeField(auto_now_add=True)
 
 
