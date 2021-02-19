@@ -219,7 +219,7 @@
         <div class="card card-blog">
           <div class="card-img">
             <a href="{{ blog.get_absolute_url }}">
-              {% cloudinary blog.image.url class="img-fluid" alt=blog.title %}
+              {% cloudinary blog.thumbnail.url class="img-fluid" alt=blog.title %}
             </a>
           </div>
           <div class="card-body">
@@ -230,7 +230,7 @@
             </div>
             <h3 class="card-title"><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h3>
             <p class="card-description">
-              {{ blog.description }}
+              {{ blog.short_description }}
             </p>
           </div>
           <div class="card-footer">
