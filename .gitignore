@@ -3,3 +3,6 @@ db.sqlite3
 __pycache__/
 assets/
 media/
+Procfile
+*.min.*
+migrations/
