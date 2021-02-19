@@ -231,10 +231,16 @@ class BlogSection(models.Model):
 
 
 class Blogs(models.Model):
-	image = CloudinaryField('images')
-	category = models.ForeignKey(Categories, on_delete=models.CASCADE)
 	title = models.CharField(max_length=200)
-	description = models.TextField()
+	thumbnail = CloudinaryField('images')
+	category = models.ForeignKey(Categories, on_delete=models.CASCADE)
+	short_description = models.TextField()
+	content = models.TextField()
+	image_1 = CloudinaryField('images', null=True, blank=True)
+	image_2 = CloudinaryField('images', null=True, blank=True)
+	image_3 = CloudinaryField('images', null=True, blank=True)
+	image_4 = CloudinaryField('images', null=True, blank=True)
+	image_5 = CloudinaryField('images', null=True, blank=True)
 	author = models.OneToOneField(User, models.CASCADE)
 	added_date = models.DateTimeField(auto_now_add=True)
 
