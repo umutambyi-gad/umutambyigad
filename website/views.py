@@ -17,6 +17,7 @@ from .models import (
 	Categories,
 	BlogSection,
 	Blogs,
+	BlogSingle,
 	Contact,
 	SocialMedia
 )
@@ -63,3 +64,12 @@ class HomeView(View):
 				'message': 'OK'
 				}, status=200
 			)
+
+
+def blog_single(request, blog_id, blog_title_slug):
+	context = {
+		'blog': Blogs.objects.get(pk=blog_id),
+		'recent_blogs': Blogs.recent_blogs(),
+		'blog_single': BlogSingle.objects.first()
+	}
+	return render(request, 'blog-single.html', context)

@@ -218,8 +218,8 @@
       <div class="col-md-4">
         <div class="card card-blog">
           <div class="card-img">
-            <a href="blog-single.html">
-              {% cloudinary blog.image.url class="img-fluid" alt=blog.title %}
+            <a href="{{ blog.get_absolute_url }}">
+              {% cloudinary blog.thumbnail.url class="img-fluid" alt=blog.title %}
             </a>
           </div>
           <div class="card-body">
@@ -228,14 +228,14 @@
                 <h6 class="category">{{ blog.category }}</h6>
               </div>
             </div>
-            <h3 class="card-title"><a href="blog-single.html">{{ blog.title }}</a></h3>
+            <h3 class="card-title"><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h3>
             <p class="card-description">
-              {{ blog.description }}
+              {{ blog.short_description }}
             </p>
           </div>
           <div class="card-footer">
             <div class="post-author">
-              <a href="#">
+              <a href="{{ blog.get_absolute_url }}">
                 {% cloudinary blog.author.profile.avatar.url class="avatar rounded-circle" alt=blog.author.get_full_name %}
                 <span class="author">{{ blog.author.get_full_name }}</span>
               </a>
