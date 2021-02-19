@@ -16,7 +16,8 @@ from .models import (
 	Portifolio,
 	Categories,
 	BlogSection,
-	AllBlogs,
+	Blogs,
+	BlogSingle,
 	Contact,
 	SocialMedia
 )
@@ -38,7 +39,7 @@ class HomeView(View):
 		'portifolio_section': PortifolioSection.objects.first(),
 		'portifolios': Portifolio.objects.all(),
 		'blog_section': BlogSection.objects.first(),
-		'blogs': AllBlogs.objects.all(),
+		'blogs': Blogs.objects.all(),
 		'contact': Contact.objects.first(),
 		'social_media': SocialMedia.objects.all()
 		}
@@ -67,7 +68,8 @@ class HomeView(View):
 
 def blog_single(request, blog_id, blog_title_slug):
 	context = {
-		'blog': AllBlogs.objects.get(pk=blog_id),
-		'recent_blogs': AllBlogs.recent_blogs()
+		'blog': Blogs.objects.get(pk=blog_id),
+		'recent_blogs': Blogs.recent_blogs(),
+		'blog_single': BlogSingle.objects.first()
 	}
 	return render(request, 'blog-single.html', context)

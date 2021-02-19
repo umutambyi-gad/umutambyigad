@@ -4,16 +4,16 @@
 
 {% load cloudinary %}
 
-{% block title %}|{% endblock %}
+{% block title %}| {{ blog.title }}{% endblock %}
 
 {% block meta %}
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta name="keywords" content="" />
-<meta name="description" content="" />
+<meta name="description" content="{{ blog.title }}" />
 {% endblock %}
 
 {% block content %}
-<div class="intro intro-single route bg-image" style="background-image: url()">
+<div class="intro intro-single route bg-image" style="background-image: url({{ blog_single.breadcrumb_image }})">
   <div class="overlay-mf"></div>
   <div class="intro-content display-table">
     <div class="table-cell">
@@ -21,7 +21,7 @@
         <h2 class="intro-title mb-4">Blog Details</h2>
         <ol class="breadcrumb d-flex justify-content-center">
           <li class="breadcrumb-item">
-            <a href="">Home</a>
+            <a href="{% url 'website:home' %}">Home</a>
           </li>
           <li class="breadcrumb-item active">blog-single</li>
         </ol>
@@ -39,15 +39,15 @@
             <img src="#" class="img-fluid" alt="">
           </div>
           <div class="post-meta">
-            <h1 class="article-title"></h1>
+            <h1 class="article-title">{{ blog.title }}</h1>
             <ul>
               <li>
                 <span class="ion-ios-person"></span>
-                <a href="#"></a>
+                <a href="#">{{ blog.author.get_full_name }}</a>
               </li>
               <li>
                 <span class="ion-pricetag"></span>
-                <a href="#"></a>
+                <a href="#">{{ blog.category }}</a>
               </li>
               <li>
                 <span class="ion-chatbox"></span>
@@ -56,37 +56,8 @@
             </ul>
           </div>
           <div class="article-content">
-
+            {{ blog.content|safe }}
           </div>
-        </div>
-        <div class="box-comments">
-          <div class="title-box-2">
-            <h4 class="title-comments title-left">Comments (0)</h4>
-          </div>
-          <ul class="list-comments">
-            <li>
-              <div class="comment-avatar">
-                <img src="" alt="">
-              </div>
-              <div class="comment-details">
-                <h4 class="comment-author"></h4>
-                <span></span>
-                <p></p>
-                <a href="#">Reply</a>
-              </div>
-              <li class="comment-children">
-                <div class="comment-avatar">
-                  <img src="img/testimonial-2.jpg" alt="">
-                </div>
-                <div class="comment-details">
-                  <h4 class="comment-author"></h4>
-                  <span></span>
-                  <p></p>
-                  <a href="">Reply</a>
-                </div>
-              </li>
-            </li>
-          </ul>
         </div>
         <div class="form-comments">
           <div class="title-box-2">
@@ -118,7 +89,7 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                <button type="submit" class="button button-a button-big button-rouded" disabled>Send Message</button>
               </div>
             </div>
           </form>
@@ -129,9 +100,11 @@
           <h5 class="sidebar-title">Recent Blogs</h5>
           <div class="sidebar-content">
             <ul class="list-sidebar">
+              {% for recent_blog in recent_blogs %}
               <li>
-                <a href=""></a>
+                <a href="{{ recent_blog.get_absolute_url }}">{{ recent_blog.title }}</a>
               </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -139,9 +112,11 @@
           <h5 class="sidebar-title">Tags</h5>
           <div class="sidebar-content">
             <ul>
+              {% for tag in blog.tags.all %}
               <li>
-                <a href="#"></a>
+                <a href="#">{{ tag }}</a>
               </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -150,9 +125,8 @@
   </div>
 </section>
 
-<section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url()">
-  <div class="overlay-mf"></div>
-
+<section class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url({{ blog_single.footer_image }})">
+<div class="overlay-mf"></div>
 <footer>
   <div class="container">
     <div class="row">
@@ -160,7 +134,7 @@
         <div class="copyright-box">
           <p class="copyright">&copy; Copyright <span id="year"><script>year.textContent = new Date().getFullYear();</script></span> by
             <strong>
-              <a href="#about">Umutambyi Gad</a>
+              <a href="{% url 'website:home' %}#about">Umutambyi Gad</a>
             </strong>
         </p>
         </div>

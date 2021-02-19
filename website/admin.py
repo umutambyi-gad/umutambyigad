@@ -13,6 +13,7 @@ from .models import (
 	Categories,
 	BlogSection,
 	Blogs,
+	BlogSingle,
 	Contact,
 	SocialMedia,
 	Tags
@@ -127,3 +128,6 @@ class TagsAdmin(admin.ModelAdmin):
 	list_display = ('name', 'added_date')
 
 admin.site.register(Tags, TagsAdmin)
+
+
+admin.site.register(BlogSingle)

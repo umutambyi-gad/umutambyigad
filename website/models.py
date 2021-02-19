@@ -1,6 +1,8 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
+from django.shortcuts import reverse
+from django.template.defaultfilters import slugify
 
 
 # Create your models here.
@@ -241,6 +243,18 @@ class Blogs(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Blogs'
+
+
+class BlogSingle(models.Model):
+	breadcrumb_image = CloudinaryField('images')
+	footer_image = CloudinaryField('images')
+	added_date = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return 'Blog single'
+
+	class Meta:
+		verbose_name_plural = 'Blog single'
 
 
 class Contact(models.Model):
