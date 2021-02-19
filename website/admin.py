@@ -14,7 +14,8 @@ from .models import (
 	BlogSection,
 	Blogs,
 	Contact,
-	SocialMedia
+	SocialMedia,
+	Tags
 )
 
 
@@ -100,7 +101,6 @@ admin.site.register(BlogSection, BlogSectionAdmin)
 
 
 class BlogsAdmin(admin.ModelAdmin):
-	fields = ('image', 'title', 'description', 'category')
 	list_display = ('title', 'author', 'added_date')
 
 	# Save authenticated user as an author when author field is not given
@@ -121,3 +121,9 @@ class SocialMediaAdmin(admin.ModelAdmin):
 	list_display = ('name', 'added_date')
 
 admin.site.register(SocialMedia, SocialMediaAdmin)
+
+
+class TagsAdmin(admin.ModelAdmin):
+	list_display = ('name', 'added_date')
+
+admin.site.register(Tags, TagsAdmin)
