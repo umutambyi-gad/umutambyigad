@@ -208,6 +208,17 @@ class Portifolio(models.Model):
 		verbose_name_plural = 'Portifolio'
 
 
+class Tags(models.Model):
+	name = models.CharField(max_length=250)
+	added_date = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return self.name
+
+	class Meta:
+		verbose_name_plural = 'Tags'
+
+
 
 class BlogSection(models.Model):
 	head = models.CharField(max_length=250)
@@ -241,6 +252,7 @@ class Blogs(models.Model):
 	image_3 = CloudinaryField('images', null=True, blank=True)
 	image_4 = CloudinaryField('images', null=True, blank=True)
 	image_5 = CloudinaryField('images', null=True, blank=True)
+	tags = models.ManyToManyField(Tags)
 	author = models.OneToOneField(User, models.CASCADE)
 	added_date = models.DateTimeField(auto_now_add=True)
 
