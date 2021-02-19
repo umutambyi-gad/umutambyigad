@@ -3,3 +3,5 @@ db.sqlite3
 __pycache__/
 assets/
 media/
+style.css
+main.js
