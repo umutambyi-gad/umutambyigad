@@ -5,3 +5,6 @@ assets/
 media/
 style.css
 main.js
+*.min.*
+migrations/
+Procfile
