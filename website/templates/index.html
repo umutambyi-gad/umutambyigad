@@ -46,7 +46,7 @@
               <div class="row">
                 <div class="col-sm-6 col-md-5">
                   <div class="about-img">
-                    {% cloudinary profile.avatar.url class="img-fluid rounded b-shadow-a" %}
+                    {% cloudinary profile.avatar.url class="img-fluid rounded b-shadow-a" alt=profile.user.get_full_name %}
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-7">
@@ -132,7 +132,7 @@
   <div class="container">
     <div class="row">
       {% for stat in stats %}
-      <div class="col-lg-{{ col_lg }}">
+      <div class="col-lg-{{ col_lg }} mt-2 mb-2">
         <div class="counter-box">
           <div class="counter-ico">
             <span class="ico-circle"><i class="{{ stat.icon }}"></i></span>
@@ -171,7 +171,7 @@
         <div class="work-box">
           <a href="{{ portifolio.image.url }}" data-lightbox="gallery-mf">
             <div class="work-img">
-              {% cloudinary portifolio.image.url class="img-fluid" %}
+              {% cloudinary portifolio.image.url class="img-fluid" alt=portifolio.description %}
             </div>
             <div class="work-content">
               <div class="row">
@@ -219,7 +219,7 @@
         <div class="card card-blog">
           <div class="card-img">
             <a href="blog-single.html">
-              {% cloudinary blog.image.url class="img-fluid" %}
+              {% cloudinary blog.image.url class="img-fluid" alt=blog.title %}
             </a>
           </div>
           <div class="card-body">
@@ -236,7 +236,7 @@
           <div class="card-footer">
             <div class="post-author">
               <a href="#">
-                {% cloudinary blog.author.profile.avatar.url class="avatar rounded-circle" %}
+                {% cloudinary blog.author.profile.avatar.url class="avatar rounded-circle" alt=blog.author.get_full_name %}
                 <span class="author">{{ blog.author.get_full_name }}</span>
               </a>
             </div>
@@ -323,7 +323,7 @@
                 <div class="socials">
                   <ul>
                     {% for social_medium in social_media %}
-                    <li>
+                    <li class="mt-2 mb-2">
                       <a href="{{ social_medium.link }}" target="_blank">
                         <span class="ico-circle"><i class="{{ social_medium.icon }}"></i></span>
                       </a>
