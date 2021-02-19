@@ -3,7 +3,6 @@ from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 
 
-
 # Create your models here.
 class Introduction(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -12,17 +11,14 @@ class Introduction(models.Model):
 	about = models.CharField(max_length=300)
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
 		if not self.pk and Introduction.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
-
 	def __str__(self):
 		return self.user.username
-
 
 	class Meta:
 		verbose_name_plural = 'Introduction'
@@ -32,7 +28,6 @@ class Careers(models.Model):
 	career = models.CharField(max_length=250)
 	added_date = models.DateTimeField(auto_now_add=True)
 	
-
 	def __str__(self):
 		return self.career
 
@@ -51,17 +46,14 @@ class Profile(models.Model):
 	about =  models.TextField()
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
 		if not self.pk and Profile.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
-
 	def __str__(self):
 		return self.names
-
 
 	class Meta:
 		verbose_name_plural = 'Profile'
@@ -72,10 +64,8 @@ class Skills(models.Model):
 	rate = models.IntegerField(default=0)
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	def __str__(self):
 		return self.name
-
 
 	class Meta:
 		verbose_name_plural = 'Skills'
@@ -86,17 +76,14 @@ class ServiceSection(models.Model):
 	paragraph = models.TextField()
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
 		if not self.pk and ServiceSection.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
-
 	def __str__(self):
 		return self.heading
-
 
 	class Meta:
 		verbose_name_plural = 'Service section'
@@ -108,10 +95,8 @@ class Services(models.Model):
 	description = models.CharField(max_length=500)
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	def __str__(self):
 		return self.title
-
 
 	class Meta:
 		verbose_name_plural = 'Services'
@@ -121,17 +106,14 @@ class StatisticSection(models.Model):
 	background_image = CloudinaryField('images')
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
 		if not self.pk and StatisticSection.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
-
 	def __str__(self):
 		return 'Statistic section'
-
 
 	class Meta:
 		verbose_name_plural = 'Statistic section'
@@ -143,7 +125,6 @@ class Statistics(models.Model):
 	rank = models.IntegerField(default=0)
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	# method to return number for bootstrap col ex. col-lg-{collumns_count}
 	@classmethod
 	def columns_count(cls):
@@ -151,10 +132,8 @@ class Statistics(models.Model):
 			return 12 // cls.objects.count()
 		return False
 
-
 	def __str__(self):
 		return self.title
-
 
 	class Meta:
 		verbose_name_plural = 'Statistics'
@@ -165,13 +144,11 @@ class PortifolioSection(models.Model):
 	paragraph = models.TextField()
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
 		if not self.pk and PortifolioSection.objects.exists():
 			return False
 		super().save(*args, **kwargs)
-
 
 	def __str__(self):
 		return self.heading
@@ -184,10 +161,8 @@ class Categories(models.Model):
 	category = models.CharField(max_length=250)
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	def __str__(self):
 		return self.category
-
 
 	class Meta:
 		verbose_name_plural = 'Categories'
@@ -199,10 +174,8 @@ class Portifolio(models.Model):
 	category = models.ForeignKey(Categories, on_delete=models.CASCADE)
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	def __str__(self):
 		return self.description[:20]
-
 
 	class Meta:
 		verbose_name_plural = 'Portifolio'
@@ -225,17 +198,14 @@ class BlogSection(models.Model):
 	paragraph = models.CharField(max_length=300)
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
 		if not self.pk and BlogSection.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
-
 	def __str__(self):
 		return self.head
-
 
 	class Meta:
 		verbose_name_plural = 'Blog section'
@@ -256,10 +226,18 @@ class Blogs(models.Model):
 	author = models.OneToOneField(User, models.CASCADE)
 	added_date = models.DateTimeField(auto_now_add=True)
 
+	@classmethod
+	def recent_blogs(cls):
+		return cls.objects.order_by('-added_date')
+
+	def slug(self):
+		return slugify(self.title)
+
+	def get_absolute_url(self):
+		return reverse('website:blog-single', args=[str(self.pk), str(self.slug())])
 
 	def __str__(self):
 		return self.author.username
-
 
 	class Meta:
 		verbose_name_plural = 'Blogs'
@@ -273,17 +251,14 @@ class Contact(models.Model):
 	short_message = models.TextField()
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	# This method will avoid to allow more than one instance being saved
 	def save(self, *args, **kwargs):
 		if not self.pk and Contact.objects.exists():
 			return False
 		super().save(*args, **kwargs)
 
-
 	def __str__(self):
 		return self.location
-
 
 	class Meta:
 		verbose_name_plural = 'Contact'
@@ -295,10 +270,8 @@ class SocialMedia(models.Model):
 	link = models.URLField()
 	added_date = models.DateTimeField(auto_now_add=True)
 
-
 	def __str__(self):
 		return self.name
-
 
 	class Meta:
 		verbose_name_plural = 'Social media'
