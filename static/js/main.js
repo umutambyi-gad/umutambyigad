@@ -246,39 +246,50 @@
 	    return false;
 	});
 
-  	let root_comment_skeleton = (commentor, commentor_avatar, date, comment, id)=> {
+
+  	let root_comment_skeleton = (commentor, date, comment, id)=> {
   		let contents = `
   		<li>
           <div class="comment-avatar">
-            <img src="${commentor_avatar}" alt="">
+            <img src="#">
           </div>
           <div class="comment-details">
             <h4 class="comment-author">${commentor}</h4>
             <span>${date}</span>
             <p>${comment}</p>
-            <a href="${id}">Reply</a>
+            <a href="#commenting" class="reply" id="comment-${id}">Reply</a>
           </div>
+          <ul class="mt-5" style="list-style: none;" id="${id}"></ul>
         </li>`;
         return contents;
   	}
 
-  	let reply_comment_skeleton = (commentor, commentor_avatar, date, comment, id)=> {
+  	let reply_comment_skeleton = (commentor, date, comment, id)=> {
   		let contents = `
   		<li class="comment-children">
 	        <div class="comment-avatar">
-	          <img src="img/testimonial-2.jpg" alt="">
+	          <img src="#">
 	        </div>
 	        <div class="comment-details">
-	          <h4 class="comment-author"></h4>
-	          <span></span>
-	          <p></p>
-	          <a href="">Reply</a>
+	          <h4 class="comment-author">${commentor}</h4>
+	          <span>${date}</span>
+	          <p>${comment}</p>
+	          <a href="#commenting" class="reply" id="comment-${id}">Reply</a>
 	        </div>
 	    </li>`;
         return contents;
   	}
 
   	let reply_id = 0;
+  	$('a.reply').click(function() {
+  		reply_id = parseInt($(this).attr('id').split('-')[1]);
+  		console.log(reply_id);
+  		$('form.form-mf').find('textarea').val(
+  			`@${$(this).siblings('h4.comment-author').text()} `
+  		);
+  		$('form.form-mf').find('textarea').focus();
+  	});
+
 	// comment
 	$('form.form-mf').submit(function(event) {
 		event.preventDefault();
@@ -291,13 +302,16 @@
     	let success = response => {
     		if (response.status == 'OK') {
     			if(response.is_root) {
-    				root_comment_skeleton(response.commentor, response.commentor_avatar, response.date, response.comment, response.id);
+    				let comment = root_comment_skeleton(response.commentor, response.date, response.comment, response.id);
+    				$('#parent-comment').append(comment);
+    				$('.title-comments.title-left').text(`Comments (${response.total_comments})`)
     			} else {
-    				reply_comment_skeleton(response.commentor, response.commentor_avatar, response.date, response.comment, response.id);
+    				let reply = reply_comment_skeleton(response.commentor, response.date, response.comment, response.id);
+    				$(`#${response.id}`).append(reply);
+    				$('.title-comments.title-left').text(`Comments (${response.total_comments})`)
+    				reply_id = 0;
     			}
-    			$('form.form-mf').find("input, textarea").val("");
-    		} else {
-    			event.preventDefault();
+    			$('form.form-mf .form-group').find("input, textarea").val("");
     		}
     	}
     	ajaxRequest('POST', obj, success);
