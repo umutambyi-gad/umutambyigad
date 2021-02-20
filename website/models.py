@@ -289,3 +289,32 @@ class SocialMedia(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Social media'
+
+
+class RootComments(models.Model):
+	blog = models.ForeignKey(Blogs, on_delete=models.CASCADE)
+	commentor_name = models.CharField(max_length=250)
+	commentor_email = models.EmailField()
+	comment = models.TextField()
+	added_date = models.DateTimeField(auto_now_add=True)
+
+	def __str__(self):
+		return self.user.get_full_name()
+
+	class Meta:
+		verbose_name_plural = 'Root Comments'
+
+
+class ReplyComments(models.Model):
+	root_comment = models.ForeignKey(RootComments, on_delete=models.CASCADE)
+	commentor_name = models.CharField(max_length=250)
+	commentor_email = models.EmailField()
+	comment = models.TextField()
+	added_date = models.DateTimeField(auto_now_add=True)
+	
+	def __str__(self):
+		return self.user.get_full_name()
+
+	class Meta:
+		verbose_name_plural = 'Reply Comments'
+
