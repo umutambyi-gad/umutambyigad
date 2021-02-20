@@ -67,7 +67,7 @@
             {% for root_comment in blog.rootcomments_set.all %}
             <li>
               <div class="comment-avatar">
-                <img src="#">
+                <img src="https://res.cloudinary.com/hittechsolutiongroup/image/upload/v1613215812/roz6945eyqiip5jhy7lq.jpg">
               </div>
               <div class="comment-details">
                 <h4 class="comment-author">{{ root_comment.commentor_name }}</h4>
@@ -79,7 +79,7 @@
               {% for reply_comment in root_comment.replycomments_set.all %}
               <li class="comment-children">
                 <div class="comment-avatar">
-                  <img src="#">
+                  <img src="https://res.cloudinary.com/hittechsolutiongroup/image/upload/v1613215812/roz6945eyqiip5jhy7lq.jpg">
                 </div>
                 <div class="comment-details">
                   <h4 class="comment-author">{{ reply_comment.commentor_name }}</h4>

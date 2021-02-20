@@ -251,7 +251,7 @@
   		let contents = `
   		<li>
           <div class="comment-avatar">
-            <img src="#">
+            <img src="https://res.cloudinary.com/hittechsolutiongroup/image/upload/v1613215812/roz6945eyqiip5jhy7lq.jpg">
           </div>
           <div class="comment-details">
             <h4 class="comment-author">${commentor}</h4>
@@ -268,7 +268,7 @@
   		let contents = `
   		<li class="comment-children">
 	        <div class="comment-avatar">
-	          <img src="#">
+	          <img src="https://res.cloudinary.com/hittechsolutiongroup/image/upload/v1613215812/roz6945eyqiip5jhy7lq.jpg">
 	        </div>
 	        <div class="comment-details">
 	          <h4 class="comment-author">${commentor}</h4>
