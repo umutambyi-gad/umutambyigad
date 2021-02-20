@@ -19,7 +19,9 @@ from .models import (
 	Blogs,
 	BlogSingle,
 	Contact,
-	SocialMedia
+	SocialMedia,
+	RootComments,
+	ReplyComments
 )
 
 
@@ -72,4 +74,51 @@ def blog_single(request, blog_id, blog_title_slug):
 		'recent_blogs': Blogs.recent_blogs(),
 		'blog_single': BlogSingle.objects.first()
 	}
+	if request.is_ajax():
+		commentor_name = unquote(request.POST.get('commentor_name', None))
+		commentor_email = unquote(request.POST.get('commentor_email', None))
+		comment = unquote(request.POST.get('comment', None))
+		commentor_name = commentor_name.replace(' ', '_')
+		reply_id = request.POST.get('reply_id', None)
+		is_root = False
+
+		if int(reply_id) == 0:
+			root = RootComments.objects.create(
+				blog= context['blog'],
+				commentor_name=commentor_name,
+				commentor_email=commentor_email,
+				comment=comment
+			)
+			root.save()
+			is_root = True
+
+			return JsonResponse({
+				'status':'OK',
+				'is_root': is_root,
+				'commentor': root.commentor_name,
+				'commentor_avatar': 'default.jpg',
+				'date': root.added_date.date(),
+				'comment': root.comment,
+				'id': root.pk
+				}, status=200
+			)
+		else:
+			reply = ReplyComments.objects.create(
+				root_comment=RootComments.objects.get(pk=reply_id),
+				commentor_name=commentor_name,
+				commentor_email=commentor_email,
+				comment=comment
+			)
+			reply.save()
+
+			return JsonResponse({
+				'status':'OK',
+				'is_root': is_root,
+				'commentor': reply.commentor_name,
+				'commentor_avatar': 'default.jpg',
+				'date': reply.added_date.date(),
+				'comment': reply.comment,
+				'id': reply_id
+				}, status=200
+			)
 	return render(request, 'blog-single.html', context)
