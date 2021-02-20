@@ -69,10 +69,12 @@ class HomeView(View):
 
 
 def blog_single(request, blog_id, blog_title_slug):
+	total_comments = RootComments.objects.count() + ReplyComments.objects.count()
 	context = {
 		'blog': Blogs.objects.get(pk=blog_id),
 		'recent_blogs': Blogs.recent_blogs(),
-		'blog_single': BlogSingle.objects.first()
+		'blog_single': BlogSingle.objects.first(),
+		'total_comments': total_comments
 	}
 	if request.is_ajax():
 		commentor_name = unquote(request.POST.get('commentor_name', None))
@@ -99,7 +101,8 @@ def blog_single(request, blog_id, blog_title_slug):
 				'commentor_avatar': 'default.jpg',
 				'date': root.added_date.date(),
 				'comment': root.comment,
-				'id': root.pk
+				'id': root.pk,
+				'total_comments': RootComments.objects.count() + ReplyComments.objects.count()
 				}, status=200
 			)
 		else:
@@ -115,10 +118,10 @@ def blog_single(request, blog_id, blog_title_slug):
 				'status':'OK',
 				'is_root': is_root,
 				'commentor': reply.commentor_name,
-				'commentor_avatar': 'default.jpg',
 				'date': reply.added_date.date(),
 				'comment': reply.comment,
-				'id': reply_id
+				'id': reply_id,
+				'total_comments':  RootComments.objects.count() + ReplyComments.objects.count()
 				}, status=200
 			)
 	return render(request, 'blog-single.html', context)
