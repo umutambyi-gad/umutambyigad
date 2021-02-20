@@ -299,7 +299,7 @@ class RootComments(models.Model):
 	added_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
-		return self.user.get_full_name()
+		return self.commentor_name
 
 	class Meta:
 		verbose_name_plural = 'Root Comments'
@@ -313,7 +313,7 @@ class ReplyComments(models.Model):
 	added_date = models.DateTimeField(auto_now_add=True)
 	
 	def __str__(self):
-		return self.user.get_full_name()
+		return self.commentor_name
 
 	class Meta:
 		verbose_name_plural = 'Reply Comments'
