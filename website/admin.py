@@ -16,7 +16,9 @@ from .models import (
 	BlogSingle,
 	Contact,
 	SocialMedia,
-	Tags
+	Tags,
+	RootComments,
+	ReplyComments
 )
 
 
@@ -131,3 +133,7 @@ admin.site.register(Tags, TagsAdmin)
 
 
 admin.site.register(BlogSingle)
+
+admin.site.register(RootComments)
+
+admin.site.register(ReplyComments)
