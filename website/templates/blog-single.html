@@ -36,7 +36,7 @@
       <div class="col-md-8">
         <div class="post-box">
           <div class="post-thumb">
-            <img src="#" class="img-fluid" alt="">
+            {% cloudinary blog.thumbnail.url class="img-fluid" alt=blog.title %}
           </div>
           <div class="post-meta">
             <h1 class="article-title">{{ blog.title }}</h1>
