@@ -1342,3 +1342,7 @@ footer strong a{
 .form-comments {
   background: #131f33 !important;
 }
+
+ul#parent-comment ul{
+  list-style: none;
+}
