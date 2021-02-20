@@ -1346,3 +1346,8 @@ footer strong a{
 ul#parent-comment ul{
   list-style: none;
 }
+
+.link {
+  color: #007bff !important;
+  text-decoration: underline !important;
+}
