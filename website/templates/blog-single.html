@@ -59,37 +59,68 @@
             {{ blog.content|safe }}
           </div>
         </div>
-        <div class="form-comments">
+        <div class="box-comments">
           <div class="title-box-2">
+            <h4 class="title-comments title-left">Comments ({{ total_comments }})</h4>
+          </div>
+          <ul class="list-comments" id="parent-comment">
+            {% for root_comment in blog.rootcomments_set.all %}
+            <li>
+              <div class="comment-avatar">
+                <img src="#">
+              </div>
+              <div class="comment-details">
+                <h4 class="comment-author">{{ root_comment.commentor_name }}</h4>
+                <span>{{ root_comment.added_date.date }}</span>
+                <p>{{ root_comment.comment }}</p>
+                <a href="#commenting" class="reply" id="comment-{{ root_comment.pk }}">Reply</a>
+              </div>
+              <ul class="mt-5" id="{{ root_comment.pk }}">
+              {% for reply_comment in root_comment.replycomments_set.all %}
+              <li class="comment-children">
+                <div class="comment-avatar">
+                  <img src="#">
+                </div>
+                <div class="comment-details">
+                  <h4 class="comment-author">{{ reply_comment.commentor_name }}</h4>
+                  <span>{{ reply_comment.added_date.date }}</span>
+                  <p>{{ reply_comment.comment }}</p>
+                  <a href="#commenting" class="reply" id="comment-{{ root_comment.pk }}">Reply</a>
+                </div>
+              </li>
+              {% endfor %}
+              </ul>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+       <div class="form-comments">
+         <div class="title-box-2">
             <h3 class="title-left">
-              Leave a Reply
+              Leave a Comment
             </h3>
           </div>
-          <form class="form-mf">
+          <form id="commenting" class="form-mf" action="{% url 'website:blog-single' blog.pk blog.slug %}" method="POST">
+            {% csrf_token %}
             <div class="row">
               <div class="col-md-6 mb-3">
                 <div class="form-group">
-                  <input type="text" class="form-control input-mf" id="inputName" placeholder="Name *" required>
+                  <input type="text" class="form-control input-mf" id="inputName" placeholder="Name *" name="commentor_name" required>
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <div class="form-group">
-                  <input type="email" class="form-control input-mf" id="inputEmail1" placeholder="Email *" required>
+                  <input type="email" class="form-control input-mf" id="inputEmail1" placeholder="Email *" name="commentor_email" required>
                 </div>
               </div>
               <div class="col-md-12 mb-3">
                 <div class="form-group">
-                  <input type="url" class="form-control input-mf" id="inputUrl" placeholder="Website">
-                </div>
-              </div>
-              <div class="col-md-12 mb-3">
-                <div class="form-group">
-                  <textarea id="textMessage" class="form-control input-mf" placeholder="Comment *" name="message"
+                  <textarea id="textMessage" class="form-control input-mf" placeholder="Comment *" name="comment"
                     cols="45" rows="8" required></textarea>
                 </div>
               </div>
               <div class="col-md-12">
-                <button type="submit" class="button button-a button-big button-rouded" disabled>Send Message</button>
+                <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
               </div>
             </div>
           </form>
