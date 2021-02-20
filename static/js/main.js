@@ -259,7 +259,7 @@
             <p>${comment}</p>
             <a href="#commenting" class="reply" id="comment-${id}">Reply</a>
           </div>
-          <ul class="mt-5" style="list-style: none;" id="${id}"></ul>
+          <ul class="mt-5" id="${id}"></ul>
         </li>`;
         return contents;
   	}
