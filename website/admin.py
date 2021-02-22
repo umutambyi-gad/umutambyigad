@@ -30,6 +30,7 @@ class IntroductionAdmin(admin.ModelAdmin):
 		super().save_model(request, obj, form, change)
 
 	list_display = ('user', 'added_date')
+	exclude = ('user',)
 
 admin.site.register(Introduction, IntroductionAdmin)
 
@@ -48,6 +49,7 @@ class ProfileAdmin(admin.ModelAdmin):
 		super().save_model(request, obj, form, change)
 
 	list_display = ('names' , 'added_date')
+	exclude = ('user',)
 
 admin.site.register(Profile, ProfileAdmin)
 
@@ -111,6 +113,8 @@ class BlogsAdmin(admin.ModelAdmin):
 		obj.author = request.user
 		super().save_model(request, obj, form, change)
 
+	exclude = ('author',)
+
 admin.site.register(Blogs, BlogsAdmin)
 
 
@@ -131,9 +135,16 @@ class TagsAdmin(admin.ModelAdmin):
 
 admin.site.register(Tags, TagsAdmin)
 
-
 admin.site.register(BlogSingle)
 
-admin.site.register(RootComments)
+class RootCommentsAdmin(admin.ModelAdmin):
+	exclude = ('blog',)
+	list_display = ('commentor_name', 'blog', 'added_date')
 
-admin.site.register(ReplyComments)
+admin.site.register(RootComments, RootCommentsAdmin)
+
+class ReplyCommentsAdmin(admin.ModelAdmin):
+	exclude = ('root_comment',)
+	list_display = ('commentor_name', 'root_comment', 'added_date')
+
+admin.site.register(ReplyComments, ReplyCommentsAdmin)

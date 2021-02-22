@@ -1351,3 +1351,8 @@ ul#parent-comment ul{
   color: #007bff !important;
   text-decoration: underline !important;
 }
+.card-title a:hover,
+h2.w-title:hover,
+ul.list-sidebar li a:hover {
+  color: #007bff !important;
+}
