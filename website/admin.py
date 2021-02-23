@@ -23,6 +23,9 @@ from .models import (
 
 
 # Register your models here.
+admin.site.site_header = 'Umutambyi Gad\'s admin panel'
+admin.site.site_title = admin.site.site_header
+
 class IntroductionAdmin(admin.ModelAdmin):
 	# Save authenticated user as an author when author field is not given
 	def save_model(self, request, obj, form, change):
