@@ -3,7 +3,7 @@ My Portfolio
 
 ## Author
 **Gitlab** [@umutambyi-gad](https://gitlab.com/umutambyi-gad) <br>
-**Website:** [umutambyigad](https://umutambyigad.herokuapp.com) <br>
+**Website:** [umutambyigad](https://umutambyigad.me) <br>
 **Stackoverflow:** [@umutambyi-gad](https://stackoverflow.com/users/13536893/umutambyi-gad) <br>
 **Twitter:** [@umutambyi_gad](https://twitter.com/umutambyi_gad) <br>
 **Linkedin:**  [@umutambyi-gad](https://www.linkedin.com/in/umutambyi-gad/) <br>
