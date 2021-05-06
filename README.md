@@ -16,4 +16,5 @@ My Portfolio
 
 
 ## License
-[]()
+
+This project is under the [MIT](https://github.com/umutambyi-gad/umutambyigad/blob/master/LICENSE) license
