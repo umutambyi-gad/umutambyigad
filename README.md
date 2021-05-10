@@ -1,5 +1,5 @@
 ## umutambyigad
-My Portfolio
+My personal portfolio
 
 ## Author
 **Gitlab** [@umutambyi-gad](https://gitlab.com/umutambyi-gad) <br>
